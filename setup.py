@@ -1,8 +1,10 @@
-from setuptools import setup, find_packages
+from setuptools import setup
+
 
 def readme():
     with open('README.md') as f:
         return f.read()
+
 
 setup(
     name='bcp-reader',
