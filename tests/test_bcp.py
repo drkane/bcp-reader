@@ -17,7 +17,7 @@ def test_reader():
     with open(testfile) as a:
         reader = bcp.reader(a)
         for r in reader:
-            assert type(r) == list
+            assert isinstance(r, list)
             assert len(r) == 12
             if r[0] == '13':
                 assert r[3] == 'Saundercock, Mr. William Henry'
@@ -27,7 +27,7 @@ def test_dict_reader():
     with open(testfile) as a:
         reader = bcp.DictReader(a)
         for r in reader:
-            assert type(r) == dict
+            assert isinstance(r, dict)
             assert len(r) == 12
             if r['PassengerId'] == '13':
                 assert r['Name'] == 'Saundercock, Mr. William Henry'
@@ -38,7 +38,7 @@ def test_dict_reader_fieldnames():
     with open(testfile) as a:
         reader = bcp.DictReader(a, fieldnames=dummy_fields)
         for r in reader:
-            assert type(r) == dict
+            assert isinstance(r, dict)
             assert len(r) == 12
             if r['field 0'] == '13':
                 assert r['field 3'] == 'Saundercock, Mr. William Henry'
@@ -62,7 +62,7 @@ def test_reader_small_blocksize():
     with open(testfile) as a:
         reader = bcp.reader(a, blocksize=12)
         for r in reader:
-            assert type(r) == list
+            assert isinstance(r, list)
             assert len(r) == 12
             if r[0] == '13':
                 assert r[3] == 'Saundercock, Mr. William Henry'
@@ -72,7 +72,7 @@ def test_dict_reader_small_blocksize():
     with open(testfile) as a:
         reader = bcp.DictReader(a, blocksize=12)
         for r in reader:
-            assert type(r) == dict
+            assert isinstance(r, dict)
             assert len(r) == 12
             if r['PassengerId'] == '13':
                 assert r['Name'] == 'Saundercock, Mr. William Henry'
