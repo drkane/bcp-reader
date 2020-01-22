@@ -6,7 +6,7 @@ def readme():
 
 setup(
     name='bcp-reader',
-    version='0.1',
+    version='0.1.1',
     description='Stream and convert BCP format files',
     long_description=readme(),
     long_description_content_type='text/markdown',

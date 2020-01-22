@@ -46,6 +46,7 @@ def faststream(fp, dialect='bcp', blocksize=BLOCKSIZE, **fmtparams):
     d = bcp_dialect()
     delimiter = fmtparams.get("delimiter", d.delimiter)
     lineterminator = fmtparams.get("delimiter", d.lineterminator)
+    chars = set(delimiter + lineterminator)
 
     block = fp.read(blocksize)
     trail = None
@@ -54,7 +55,15 @@ def faststream(fp, dialect='bcp', blocksize=BLOCKSIZE, **fmtparams):
         if not trail is None:
             block = trail + block
 
+        # if we see a char from either of the terminators then add a bit more onto the block
+        if block[-1] in chars:
+            new = fp.read(1)
+            if new:
+                block = block + new
+                continue
+        
         lines = block.replace(delimiter, RECORD_SEP).split(lineterminator)
+
         if block[-4:] == lineterminator:
             trail = ""
         else:
@@ -66,6 +75,7 @@ def faststream(fp, dialect='bcp', blocksize=BLOCKSIZE, **fmtparams):
                 yield line.split(RECORD_SEP)
 
         block = fp.read(blocksize)
+    return
 
 class DictReader(csv.DictReader):
     def __init__(self, f, fieldnames=None, restkey=None, restval=None,
