@@ -1,6 +1,11 @@
 BCP Reader
 ==========
 
+![Test status](https://github.com/drkane/bcp-reader/workflows/tests/badge.svg)
+[![PyPI version](https://badge.fury.io/py/bcp-reader.svg)](https://pypi.org/project/bcp-reader/)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/bcp-reader)
+![PyPI - License](https://img.shields.io/pypi/l/bcp-reader)
+
 A reader for BCP-format data files. BCP files are similar to CSV files but 
 contain a multi-character line and field delimiters. The default delimiters
 used are:
